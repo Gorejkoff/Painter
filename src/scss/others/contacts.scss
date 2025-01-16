@@ -3,7 +3,13 @@
    &__screen {
       padding: 50px 0;
       min-height: var(--vh);
+
       // min-height: max-content;
+      &.screen-title {
+         display: flex;
+         flex-direction: column;
+         justify-content: flex-end;
+      }
    }
 
    &__body {
