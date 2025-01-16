@@ -1,8 +1,9 @@
 .contacts {
 
    &__screen {
-      height: var(--vh);
-      min-height: max-content;
+      padding: 50px 0;
+      min-height: var(--vh);
+      // min-height: max-content;
    }
 
    &__body {
@@ -12,7 +13,7 @@
    }
 
    &__title {
-      padding-bottom: 10px;
+      padding-bottom: 40px;
       font-size: var(--font-size-title);
       font-weight: 900;
       text-align: center;

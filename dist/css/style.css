@@ -484,6 +484,7 @@ body {
   position: absolute;
   top: 0;
   left: 100%;
+  z-index: 2;
   height: 0;
   width: 316px;
   overflow: hidden;
@@ -743,10 +744,8 @@ body {
 }
 
 .contacts__screen {
-  height: var(--vh);
-  min-height: -webkit-max-content;
-  min-height: -moz-max-content;
-  min-height: max-content;
+  padding: 50px 0;
+  min-height: var(--vh);
 }
 
 .contacts__body {
@@ -760,7 +759,7 @@ body {
 }
 
 .contacts__title {
-  padding-bottom: 10px;
+  padding-bottom: 40px;
   font-size: var(--font-size-title);
   font-weight: 900;
   text-align: center;
@@ -1044,5 +1043,19 @@ body {
   :root {
     --font-size-big: 196px;
     --font-size-title: var(--font-size-big);
+  }
+}
+
+@media (max-height: 600px) {
+  .about-text__first {
+    font-size: 30px;
+  }
+
+  .about-text__second {
+    font-size: 24px;
+  }
+
+  .about-text__third {
+    font-size: 18px;
   }
 }
