@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   @@include('html/1_head.html',{"title":"Алексей Володин _ Художник"})
+</head>
+
+
+<body>
+
+   <div class="wrapper">
+
+      @@include('html/2_header.html',{})
+
+      <div class="main">
+
+         @@include('html/Module_HTML/about-author.html',{})
+
+         @@include('html/Module_HTML/about-text.html',{})
+
+         @@include('html/Module_HTML/painting.html',{})
+
+         @@include('html/Module_HTML/exposition.html',{})
+
+         @@include('html/Module_HTML/contacts.html',{})
+
+      </div>
+
+   </div>
+
+
+   @@include('html/3_scripts.html',{
+   swiper: false,
+   })
+
+
+</body>
+
+</html>
