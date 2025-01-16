@@ -12,13 +12,14 @@
    }
 
    &__title {
-      padding-bottom: 112px;
+      padding-bottom: 10px;
       font-size: var(--font-size-title);
       font-weight: 900;
       text-align: center;
       width: 100%;
 
       @media (min-width:992px) {
+         padding-bottom: 112px;
          text-align: start;
          width: auto;
       }
