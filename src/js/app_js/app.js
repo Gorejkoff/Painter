@@ -1,5 +1,5 @@
 "use strict"
-document.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("load", (event) => {
 
    function throttle(callee, timeout) {
       let timer = null;
@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
          }, timeout)
       }
    }
+
+
+   if (history.scrollRestoration) {
+      console.log(history.scrollRestoration);
+      history.scrollRestoration = "manual";
+      console.log(history.scrollRestoration);
+   }
+
 
    function addTitleAnimation(className, fun1, fun2) {
       const title = document.querySelector(className)
@@ -29,7 +37,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             opacity: 0,
          },
          {
-            duration: 1,
+            duration: 0.5,
             y: 0,
             opacity: 1,
             scrollTrigger: tr,
@@ -251,6 +259,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
       horizontalScroll = false;
       horizontalTest = true;
    })
+
+
+
+
+
 
 
 });
