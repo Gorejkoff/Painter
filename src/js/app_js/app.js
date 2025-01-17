@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
    }
 
-   // let windowHeight = window.innerHeight;
+   let windowHeight = window.innerHeight;
    let windowWidth = window.innerWidth;
    let widthAuthorGallery = document.querySelector('.about-author__gallery').offsetWidth;
    let widthAuthorTitle = document.querySelector('.about-author__gallery').offsetWidth;
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       wrapper: "#scroll",
       content: "#content",
       smooth: 3,
-      smoothTouth: 0.5,
+      smoothTouth: 2,
       smoothTouch: true,
       // effects: true,
       // normalizeScroll: true
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
    const tr_2 = {
       trigger: ".about-author__title-trigger",
       start: "0% 0%",
-      end: `${windowWidth * 1} 0%`,
+      end: `${windowWidth} 0%`,
       pin: true,
       scrub: optionsAnimate.scrub,
    }
@@ -162,9 +162,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
          scrollTrigger: {
             trigger: ".painting",
             start: "0% 0%",
-            end: () => "+=" + widthPaintingList + "px",
+            end: () => widthPaintingList - windowHeight + "px 100px",
             toggleActions: 'play none none reverse',
             toggleClass: { targets: ".painting__flip-body", className: "active" },
+            // markers: {
+            //    startColor: "green",
+            //    endColor: "red",
+            //    fontSize: "40px",
+            //    fontWeight: "bold",
+            //    indent: 20
+            // }
          },
       })
 
@@ -204,7 +211,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
          document.documentElement.style.scrollBehavior = "smooth";
          smoother.scrollTo(getName);
          setTimeout(() => { document.documentElement.style.scrollBehavior = "auto"; }, 1000)
-
       }
    })
 
@@ -212,6 +218,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       windowWidth = window.innerWidth;
       widthAuthorGallery = document.querySelector('.about-author__gallery').offsetWidth;
       fontSizeTitle = window.getComputedStyle(document.body).getPropertyValue('--font-size-title');
+      ScrollTrigger.update()
    }
    const setDataVars = throttle(getDataVar, 100)
    window.addEventListener('resize', (event) => {
