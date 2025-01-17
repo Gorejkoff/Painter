@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       wrapper: "#scroll",
       content: "#content",
       smooth: 3,
-      smoothTouth: 2,
+      // smoothTouth: 0.5,
       // smoothTouch: true,
       // effects: true,
       // normalizeScroll: true
