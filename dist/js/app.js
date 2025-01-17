@@ -67,17 +67,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Flip, ScrollSmoother)
 
-   // ScrollTrigger.config({ ignoreMobileResize: true });
-   // ScrollTrigger.isTouch && ScrollTrigger.normalizeScroll({ allowNestedScroll: true });
+   ScrollTrigger.config({ ignoreMobileResize: true });
+   ScrollTrigger.isTouch && ScrollTrigger.normalizeScroll({ allowNestedScroll: true });
 
    const smoother = ScrollSmoother.create({
       wrapper: "#scroll",
       content: "#content",
-      smooth: 3,
+      smooth: 5,
       // smoothTouth: 0.5,
-      // smoothTouch: true,
-      // effects: true,
-      // normalizeScroll: true
+      smoothTouch: true,
+      effects: true,
+      normalizeScroll: true
    })
 
    const tr_2 = {
