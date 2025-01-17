@@ -13,14 +13,6 @@ window.addEventListener("load", (event) => {
       }
    }
 
-
-   if (history.scrollRestoration) {
-      console.log(history.scrollRestoration);
-      history.scrollRestoration = "manual";
-      console.log(history.scrollRestoration);
-   }
-
-
    function addTitleAnimation(className, fun1, fun2) {
       const title = document.querySelector(className)
       const tr = {
@@ -68,6 +60,7 @@ window.addEventListener("load", (event) => {
    let widthAuthorTitle = document.querySelector('.about-author__gallery').offsetWidth;
    let fontSizeTitle = window.getComputedStyle(document.body).getPropertyValue('--font-size-title');
 
+
    const optionsAnimate = {
       scrub: 0,
       ease: "none",
@@ -82,7 +75,6 @@ window.addEventListener("load", (event) => {
       wrapper: "#scroll",
       content: "#content",
       smooth: 5,
-      // smoothTouth: 0.5,
       smoothTouch: true,
       effects: true,
       normalizeScroll: true
@@ -125,22 +117,25 @@ window.addEventListener("load", (event) => {
 
    addTextAnimation(".about-text__body", ".about-text__animate");
 
-   addTitleAnimation('.painting__title', flipTitlePainding, invertTitlePainding);
 
+   addTitleAnimation('.painting__title', flipTitlePainding, invertTitlePainding);
    const paintingFlipdestination = document.querySelector('.painting__flip-destination');
+   const paintingTitle = document.querySelector('.painting__title');
    const paintingTitleItem = document.querySelector('.painting__title');
    const paintingTitleHome = document.querySelector('.painting__title-home');
-
-
    function flipTitlePainding() {
       let state = Flip.getState('.painting__title');
       paintingFlipdestination.append(paintingTitleItem);
       Flip.from(state, { duration: 1, ease: "power1.inOut", fontSize: "18px", scale: true, })
+      setTimeout(() => {
+         paintingTitle.style.transform = "translate3d(0px, 0px, 0px)";
+         paintingTitle.style.opacity = "";
+      }, 1000)
    }
    function invertTitlePainding() {
       let state = Flip.getState('.painting__title');
       paintingTitleHome.append(paintingTitleItem);
-      Flip.from(state, { duration: 1, ease: "power1.inOut", fontSize: fontSizeTitle, scale: true, })
+      Flip.from(state, { duration: 1, ease: "power1.inOut", fontSize: fontSizeTitle, scale: true, });
    }
 
    addTitleAnimation('.exposition__title')

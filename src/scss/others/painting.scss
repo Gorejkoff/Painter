@@ -9,6 +9,7 @@
    &__title {
       font-size: var(--font-size-title);
       font-weight: 900;
+      transition: transform 0.5s;
    }
 
    &__list {
