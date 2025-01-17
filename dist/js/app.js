@@ -1,48 +1,17 @@
 "use strict"
 document.addEventListener("DOMContentLoaded", (event) => {
-   // window.addEventListener('load', (event) => {});
 
-   // desktop or mobile (mouse or touchscreen)
-   const isMobile = {
-      Android: function () { return navigator.userAgent.match(/Android/i) },
-      BlackBerry: function () { return navigator.userAgent.match(/BlackBerry/i) },
-      iOS: function () { return navigator.userAgent.match(/iPhone|iPad|iPod/i) },
-      Opera: function () { return navigator.userAgent.match(/Opera Mini/i) },
-      Windows: function () { return navigator.userAgent.match(/IEMobile/i) },
-      any: function () {
-         return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+   function throttle(callee, timeout) {
+      let timer = null;
+      return function perform(...args) {
+         if (timer) return;
+         timer = setTimeout(() => {
+            callee(...args);
+            clearTimeout(timer);
+            timer = null;
+         }, timeout)
       }
-   };
-   const isPC = !isMobile.any();
-   if (isPC) { document.body.classList.add('_pc') } else { document.body.classList.add('_touch') };
-
-   // media queries
-   const MIN1024 = window.matchMedia('(min-width: 1024px)');
-   const MIN768 = window.matchMedia('(min-width: 768px)');
-
-   // variables
-   const HEADER = document.getElementById('header');
-
-
-   //  exemple
-   // const exemple = {
-   //    trigger: "#author-title",
-   //    start: "0% 0%",
-   //    end: "100% 100%",
-   //    end: () => widthAuthorGallery + "px",
-   //    pin: true,
-   //    pin: ".about-author__body",
-   //    pinSpacing: true,
-   //    scrub: true,
-   //    markers: {
-   //       startColor: "green",
-   //       endColor: "red",
-   //       fontSize: "40px",
-   //       fontWeight: "bold",
-   //       indent: 20
-   //    }
-   // }
-
+   }
 
    function addTitleAnimation(className, fun1, fun2) {
       const title = document.querySelector(className)
@@ -53,17 +22,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
          toggleActions: 'play none none reverse',
          onLeave: () => { if (fun1) fun1() },
          onEnterBack: () => { if (fun1) fun2() },
-         // markers: {
-         //    startColor: "green",
-         //    endColor: "red",
-         //    fontSize: "40px",
-         //    fontWeight: "bold",
-         //    indent: 20
-         // },
       }
       gsap.fromTo(title,
          {
-            y: "30nh",
+            y: "30vh",
             opacity: 0,
          },
          {
@@ -92,17 +54,49 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
    }
 
+   // let windowHeight = window.innerHeight;
    let windowWidth = window.innerWidth;
-   let windowHeight = window.innerHeight;
    let widthAuthorGallery = document.querySelector('.about-author__gallery').offsetWidth;
+   let widthAuthorTitle = document.querySelector('.about-author__gallery').offsetWidth;
+   let fontSizeTitle = window.getComputedStyle(document.body).getPropertyValue('--font-size-title');
 
    const optionsAnimate = {
-      scrub: 1,
+      scrub: 0,
       ease: "none",
    }
 
-   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Flip)
+   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Flip, ScrollSmoother)
 
+   // ScrollTrigger.config({ ignoreMobileResize: true });
+   // ScrollTrigger.isTouch && ScrollTrigger.normalizeScroll({ allowNestedScroll: true });
+
+   const smoother = ScrollSmoother.create({
+      wrapper: "#scroll",
+      content: "#content",
+      smooth: 3,
+      smoothTouth: 0.5,
+      smoothTouch: true,
+      // effects: true,
+      // normalizeScroll: true
+   })
+
+   const tr_2 = {
+      trigger: ".about-author__title-trigger",
+      start: "0% 0%",
+      end: `${windowWidth * 1} 0%`,
+      pin: true,
+      scrub: optionsAnimate.scrub,
+   }
+
+   gsap.fromTo(".about-author__title",
+      {
+         x: "80vw",
+      },
+      {
+         x: () => -(widthAuthorTitle / 2 + windowWidth) + "px",
+         ease: optionsAnimate.ease,
+         scrollTrigger: tr_2,
+      })
    const tr_1 = {
       trigger: ".about-author__body",
       start: "0% 0%",
@@ -121,25 +115,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
          scrollTrigger: tr_1,
       })
 
-   const tr_2 = {
-      trigger: ".about-author__title-trigger",
-      start: "0% 0%",
-      end: `${windowHeight * 2} 0%`,
-      pin: true,
-      scrub: optionsAnimate.scrub,
-   }
-
-   gsap.fromTo(".about-author__title",
-      {
-         x: "80vw",
-      },
-      {
-         x: "-200vw",
-         ease: optionsAnimate.ease,
-         scrollTrigger: tr_2,
-      })
-
-
    addTextAnimation(".about-text__body", ".about-text__animate");
 
    addTitleAnimation('.painting__title', flipTitlePainding, invertTitlePainding);
@@ -149,10 +124,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
    const paintingTitleHome = document.querySelector('.painting__title-home');
 
 
-   function getVarFontTitle() {
-      return window.getComputedStyle(document.body).getPropertyValue('--font-size-title')
-   }
-
    function flipTitlePainding() {
       let state = Flip.getState('.painting__title');
       paintingFlipdestination.append(paintingTitleItem);
@@ -161,8 +132,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
    function invertTitlePainding() {
       let state = Flip.getState('.painting__title');
       paintingTitleHome.append(paintingTitleItem);
-      Flip.from(state, { duration: 1, ease: "power1.inOut", fontSize: getVarFontTitle(), scale: true, })
+      Flip.from(state, { duration: 1, ease: "power1.inOut", fontSize: fontSizeTitle, scale: true, })
    }
+
+   addTitleAnimation('.exposition__title')
 
    let widthPaintingList = document.querySelector('.painting__list').offsetWidth;
    const widthPainting = document.querySelector('.painting__body').offsetWidth;
@@ -170,7 +143,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       scrollTrigger: {
          trigger: ".painting__list",
          start: "0% 0%",
-         end: () => widthPaintingList + "px",
+         end: () => widthPaintingList * 0.5 + "px",
          pin: true,
          scrub: optionsAnimate.scrub,
       }
@@ -181,7 +154,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
          ease: optionsAnimate.ease,
       })
 
-   addTitleAnimation('.exposition__title')
+   gsap.to(".painting__flip-body",
+      {
+         color: "#red",
+         ease: optionsAnimate.ease,
+
+         scrollTrigger: {
+            trigger: ".painting",
+            start: "0% 0%",
+            end: () => "+=" + widthPaintingList + "px",
+            toggleActions: 'play none none reverse',
+            toggleClass: { targets: ".painting__flip-body", className: "active" },
+         },
+      })
 
    addTextAnimation(".exposition__text", ".exposition__text-animate")
 
@@ -200,24 +185,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
       })
 
 
-   gsap.to(".painting__flip-body",
-      {
-         color: "#red",
-         ease: optionsAnimate.ease,
-
-         scrollTrigger: {
-            trigger: ".painting",
-            start: "0% 0%",
-            end: "100% 100%",
-            toggleActions: 'play none none reverse',
-            toggleClass: { targets: ".painting__flip-body", className: "active" },
-         },
-      })
-
-
-
-
-   const paintingList = document.querySelector('.painting__list');
    const paintingItem = document.querySelectorAll(".painting__item");
    document.body.addEventListener('click', (event) => {
       if (event.target.closest('.painting__item')) {
@@ -225,21 +192,58 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const eventTarget = event.target.closest('.painting__item');
             item.classList.toggle('active', item === eventTarget);
          })
-
          // setTimeout(() => {
          //    widthPaintingList = document.querySelector('.painting__list').offsetWidth;
          //    ScrollTrigger.refresh(true)
          // }, 1000)
 
       }
+      if (event.target.closest('[href^="#"]')) {
+         event.preventDefault();
+         let getName = event.target.getAttribute('href');
+         document.documentElement.style.scrollBehavior = "smooth";
+         smoother.scrollTo(getName);
+         setTimeout(() => { document.documentElement.style.scrollBehavior = "auto"; }, 1000)
 
+      }
    })
 
+   function getDataVar() {
+      windowWidth = window.innerWidth;
+      widthAuthorGallery = document.querySelector('.about-author__gallery').offsetWidth;
+      fontSizeTitle = window.getComputedStyle(document.body).getPropertyValue('--font-size-title');
+   }
+   const setDataVars = throttle(getDataVar, 100)
+   window.addEventListener('resize', (event) => {
+      setDataVars()
+   })
 
+   let startTouchX;
+   let startTouchY;
+   let pageScroll;
+   let horizontalScroll = false;
+   let horizontalTest = true;
+   document.addEventListener('touchstart', (event) => {
+      startTouchX = event.touches[0].clientX;
+      startTouchY = event.touches[0].clientY;
+      pageScroll = window.scrollY;
+   })
 
-
-
-
+   document.addEventListener('touchmove', (event) => {
+      if (horizontalTest && Math.abs(event.touches[0].clientX - startTouchX) > Math.abs(event.touches[0].clientY - startTouchY)) {
+         horizontalScroll = true;
+      }
+      horizontalTest = false;
+      if (horizontalScroll) {
+         event.preventDefault();
+         let value = pageScroll + -(event.touches[0].clientX - startTouchX) * 1.5;
+         smoother.scrollTo(value, true)
+      }
+   }, { passive: false })
+   document.addEventListener('touchend', (event) => {
+      horizontalScroll = false;
+      horizontalTest = true;
+   })
 
 
 });

@@ -5,7 +5,7 @@
    <title>"Алексей Володин _ Художник"</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <meta name="viewport" content="width=device-width initial-scale=1.0">
-<link rel="stylesheet" href="css/style.css?_v=20250116230430">
+<link rel="stylesheet" href="css/style.css?_v=20250117162019">
 </head>
 
 
@@ -25,7 +25,7 @@
                   <a class="header__link" href="#delivery">Заказать картину</a>
                </li>
                <li>
-                  <a class="header__link" href="#top">Об авторе</a>
+                  <a class="header__link" href="#about">Об авторе</a>
                </li>
             </ol>
          </nav>
@@ -33,14 +33,25 @@
    </div>
 </header>
 
-      <div class="main">
+      <div class="about-author__title">
+         <div>A<span>.</span>ВОЛОДИН</div>
+      </div>
 
-         <section class="about-author">
+      <div class="contacts__footer">
+         <div class="contacts__footer-container"></div>
+      </div>
+
+      <div id="scroll">
+         <div id="content">
+
+            <div class="main">
+
+               <div id="about" class="about-author">
    <div class="about-author__body">
       <div class="about-author__title-trigger">
-         <div class="about-author__title">
+         <!-- <div class="about-author__title">
             <h1>A<span>.</span>ВОЛОДИН</h1>
-         </div>
+         </div> -->
       </div>
       <div class="about-author__gallery">
          <div class="about-author__gallefy-item">
@@ -87,9 +98,9 @@
          </div>
       </div>
    </div>
-</section>
+</div>
 
-         <div class="about-text">
+               <div class="about-text">
    <div class="about-text__container">
       <div class="about-text__body">
          <div class="about-text__shell">
@@ -107,7 +118,7 @@
    </div>
 </div>
 
-         <section class="painting">
+               <section class="painting">
    <div class="painting__container">
       <div class="painting__body">
          <div class="painting__title-home">
@@ -349,7 +360,7 @@
    </div>
 
 
-   <div class="painting__flip-body">
+   <!-- <div class="painting__flip-body">
       <div class="painting__flip-container">
          <div class="painting__flip-destination"></div>
          <div class="painting__indicator">
@@ -361,15 +372,15 @@
             </span>
          </div>
       </div>
-   </div>
+   </div> -->
 
 
 </section>
 
-         <section id="exposition" class="exposition">
+               <section id="exposition" class="exposition">
    <div class="exposition__container">
       <div class="exposition__body">
-         <div class="test">
+         <div>
             <h1 class="exposition__title">выставки</h1>
          </div>
          <div class="exposition__grid">
@@ -420,7 +431,7 @@
    </div>
 </section>
 
-         <section class="contacts">
+               <section class="contacts">
    <div class="contacts__container">
       <div class="contacts__screen screen-title">
          <div class="contacts__body">
@@ -448,7 +459,7 @@
             <div class="contacts__date">2024</div>
          </div>
       </div>
-      <div class="contacts__screen">
+      <div class="contacts__screen screen-form">
          <div id="delivery" class="delivery">
             <form class="delivery__form" action="#" method="post" name="delivery" id="delivery">
                <label class="input">
@@ -475,21 +486,41 @@
       </div>
    </div>
 </section>
-<div class="contacts__footer">
-   <div class="contacts__footer-container"></div>
-</div>
 
+            </div>
+
+         </div>
       </div>
+
+
+      <div class="painting__flip-body">
+         <div class="painting__flip-container">
+            <div class="painting__flip-destination"></div>
+            <div class="painting__indicator">
+               <span>ВЫСТАВКИ</span>
+               <span>
+                  <svg width="33" height="16" viewBox="0 0 33 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M32.7071 8.70711C33.0976 8.31658 33.0976 7.68342 32.7071 7.29289L26.3431 0.928932C25.9526 0.538408 25.3195 0.538408 24.9289 0.928932C24.5384 1.31946 24.5384 1.95262 24.9289 2.34315L30.5858 8L24.9289 13.6569C24.5384 14.0474 24.5384 14.6805 24.9289 15.0711C25.3195 15.4616 25.9526 15.4616 26.3431 15.0711L32.7071 8.70711ZM0 9H32V7H0V9Z" fill="black" />
+                  </svg>
+               </span>
+            </div>
+         </div>
+      </div>
+
+
+
+
 
    </div>
 
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js?_v=20250117162019"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js?_v=20250117162019"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js?_v=20250117162019"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js?_v=20250117162019"></script>
+<script src="./js/ScrollSmoother.js?_v=20250117162019"></script>
 
-   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js?_v=20250116230430"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js?_v=20250116230430"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js?_v=20250116230430"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js?_v=20250116230430"></script>
 
-<script defer src='./js/app.js?_v=20250116230430'></script>
+<script defer src='./js/app.js?_v=20250117162019'></script>
 
 
 

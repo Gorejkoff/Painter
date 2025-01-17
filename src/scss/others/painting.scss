@@ -110,7 +110,7 @@
          cursor: auto;
 
          .painting__info {
-            height: 100%;
+            height: max-content;
          }
 
          .gallery-description {
@@ -154,7 +154,7 @@
 
 .painting__flip-body {
    pointer-events: none;
-   position: absolute;
+   position: fixed;
    bottom: 0;
    left: 0;
    z-index: -1;
@@ -162,12 +162,11 @@
    height: var(--vh);
    display: flex;
    align-items: center;
+   opacity: 0;
+   transition: opacity 0.3s;
 
    &.active {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      top: 0;
+      opacity: 1;
    }
 }
 

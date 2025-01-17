@@ -3,6 +3,7 @@
    &__container {}
 
    &__body {
+      will-change: transform;
       min-height: var(--vh);
       display: flex;
       align-items: center;
@@ -60,14 +61,15 @@
    }
 
    &__third {
-      max-width: 440px;
       font-weight: 600;
       font-size: 18px;
       line-height: 116%;
       letter-spacing: -0.06em;
       text-align: center;
+      width: 100%;
 
       @media (min-width:768px) {
+         max-width: 440px;
          margin-right: 120px;
          text-align: start;
          font-size: 30px;
