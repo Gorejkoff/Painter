@@ -1,6 +1,12 @@
 "use strict"
 window.addEventListener("load", (event) => {
 
+   let windowHeight = window.innerHeight;
+   let windowWidth = window.innerWidth;
+   let widthAuthorGallery = document.querySelector('.about-author__gallery').offsetWidth;
+   let widthAuthorTitle = document.querySelector('.about-author__gallery').offsetWidth;
+   let fontSizeTitle = window.getComputedStyle(document.body).getPropertyValue('--font-size-title');
+
    function throttle(callee, timeout) {
       let timer = null;
       return function perform(...args) {
@@ -41,7 +47,7 @@ window.addEventListener("load", (event) => {
          scrollTrigger: {
             trigger: trigerName,
             start: "50% 50%",
-            end: "5000 100%",
+            end: `${windowHeight * 3} 100%`,
             pin: true,
             scrub: optionsAnimate.scrub,
          }
@@ -53,13 +59,6 @@ window.addEventListener("load", (event) => {
          })
       }
    }
-
-   let windowHeight = window.innerHeight;
-   let windowWidth = window.innerWidth;
-   let widthAuthorGallery = document.querySelector('.about-author__gallery').offsetWidth;
-   let widthAuthorTitle = document.querySelector('.about-author__gallery').offsetWidth;
-   let fontSizeTitle = window.getComputedStyle(document.body).getPropertyValue('--font-size-title');
-
 
    const optionsAnimate = {
       scrub: 0,
