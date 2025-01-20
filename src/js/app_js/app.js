@@ -267,8 +267,6 @@ window.addEventListener("load", (event) => {
       })
 
       document.addEventListener('mousemove', (event) => {
-         // console.log(horizontalScroll + '====' + horizontalTest);
-
          if (horizontalTest && Math.abs(event.clientX - startTouchX) > Math.abs(event.clientY - startTouchY)) {
             horizontalScroll = true;
          }
@@ -284,8 +282,6 @@ window.addEventListener("load", (event) => {
          console.log('mouseup');
          horizontalScroll = false;
          horizontalTest = false;
-
-         console.log(horizontalScroll + '====' + horizontalTest);
       })
 
    }
