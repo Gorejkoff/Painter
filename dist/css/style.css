@@ -1176,12 +1176,6 @@ body img {
   }
 }
 
-@media (max-width: 766.2px) and (orientation: portrait) {
-  .about-author__gallery {
-    height: calc(var(--vh) * 0.95);
-  }
-}
-
 @media (max-height: 600px) {
   .about-text__first {
     font-size: 30px;

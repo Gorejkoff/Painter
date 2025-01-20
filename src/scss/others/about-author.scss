@@ -53,9 +53,9 @@
       align-items: flex-end;
       gap: 16px;
 
-      @media (max-width:766.2px) and (orientation: portrait) {
-         height: calc(var(--vh) * 0.95);
-      }
+      // @media (max-width:766.2px) and (orientation: portrait) {
+      //    height: calc(var(--vh) * 0.95);
+      // }
    }
 
 
