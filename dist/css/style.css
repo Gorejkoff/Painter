@@ -29,6 +29,12 @@ $maxW - махимальная ширина вьюпорта
   --font-size-title: calc(var(--font-size-big) * 0.35);
 }
 
+@supports (height: 100dvh) {
+  :root {
+    --vh: 100dvh;
+  }
+}
+
 * {
   padding: 0;
   margin: 0;

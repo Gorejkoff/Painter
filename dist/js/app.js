@@ -1,6 +1,10 @@
 "use strict"
 window.addEventListener("load", (event) => {
 
+   function getVH() {
+      document.body.style.setProperty('--vh', `${window.innerHeight}px`);
+   }
+   getVH()
    // desktop or mobile (mouse or touchscreen)
    const isMobile = {
       Android: function () { return navigator.userAgent.match(/Android/i) },
@@ -218,7 +222,8 @@ window.addEventListener("load", (event) => {
    }
    const setDataVars = throttle(getDataVar, 100)
    window.addEventListener('resize', (event) => {
-      setDataVars()
+      getVH();
+      setDataVars();
    })
 
    let startTouchX;
