@@ -223,6 +223,7 @@ body {
 
 
 .text-animate {
+   display: inline-block;
    color: transparent;
    background: linear-gradient(to right, var(--textTransparent) 50%, var(--textColor) 50%) 0 0 / 200% 100%;
    background-clip: text;

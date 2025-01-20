@@ -242,6 +242,7 @@ body img {
 }
 
 .text-animate {
+  display: inline-block;
   color: transparent;
   background: -webkit-gradient(linear, left top, right top, color-stop(50%, var(--textTransparent)), color-stop(50%, var(--textColor))) 0 0/200% 100%;
   background: linear-gradient(to right, var(--textTransparent) 50%, var(--textColor) 50%) 0 0/200% 100%;
@@ -785,8 +786,6 @@ body img {
 }
 
 .exposition__text {
-  padding-left: 2px;
-  padding-right: 2px;
   will-change: transform;
   margin: 0 auto;
   max-width: 980px;
