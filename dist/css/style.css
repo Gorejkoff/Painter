@@ -342,7 +342,7 @@ body img {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: var(--vh);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1173,6 +1173,12 @@ body img {
 
   .contacts__screen.screen-form {
     min-height: auto;
+  }
+}
+
+@media (max-width: 766.2px) and (orientation: portrait) {
+  .about-author__gallery {
+    height: calc(var(--vh) * 0.95);
   }
 }
 
