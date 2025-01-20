@@ -228,7 +228,6 @@ window.addEventListener("load", (event) => {
    let horizontalTest = false;
 
    if (!isPC) {
-      console.log("Touch");
       document.addEventListener('touchstart', (event) => {
          horizontalTest = true;
          startTouchX = event.touches[0].clientX;
@@ -253,8 +252,6 @@ window.addEventListener("load", (event) => {
    }
 
    if (isPC) {
-      console.log("PC");
-
       document.body.addEventListener("dragstart", (event) => {
          event.preventDefault();
       })

@@ -336,7 +336,7 @@ body img {
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--vh);
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -352,7 +352,7 @@ body img {
 
 .about-author__gallery-image {
   margin-bottom: 12px;
-  --height-image: calc(var(--vh) - var(--h-gallery-description) - var(--h-header));
+  --height-image: calc(100vh - var(--h-gallery-description) - var(--h-header));
 }
 
 .about-author__gallery-image.landscape img {
