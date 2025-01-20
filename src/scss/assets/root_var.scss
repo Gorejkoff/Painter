@@ -9,7 +9,7 @@
 
    --vh: 100vh;
 
-   --font-size-big: calc((var(--vh) - var(--h-header) - var(--h-gallery-description)) * 0.24);
+   --font-size-big: calc((var(--vh) - var(--h-header) - var(--h-gallery-description)) * 0.24 / 2);
    --font-size-title: calc(var(--font-size-big) * 0.35);
 
    @supports(height: 100dvh) {

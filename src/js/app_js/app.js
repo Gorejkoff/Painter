@@ -1,11 +1,24 @@
 "use strict"
 window.addEventListener("load", (event) => {
 
+   // desktop or mobile (mouse or touchscreen)
+   const isMobile = {
+      Android: function () { return navigator.userAgent.match(/Android/i) },
+      BlackBerry: function () { return navigator.userAgent.match(/BlackBerry/i) },
+      iOS: function () { return navigator.userAgent.match(/iPhone|iPad|iPod/i) },
+      Opera: function () { return navigator.userAgent.match(/Opera Mini/i) },
+      Windows: function () { return navigator.userAgent.match(/IEMobile/i) },
+      any: function () {
+         return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+      }
+   };
+   const isPC = !isMobile.any();
+   // if (isPC) { document.body.classList.add('_pc') } else { document.body.classList.add('_touch') };
+
    let windowHeight = window.innerHeight;
    let windowWidth = window.innerWidth;
    let widthAuthorGallery = document.querySelector('.about-author__gallery').offsetWidth;
-   let widthAuthorTitle = document.querySelector('.about-author__gallery').offsetWidth;
-   let fontSizeTitle = window.getComputedStyle(document.body).getPropertyValue('--font-size-title');
+   let widthAuthorTitle = document.querySelector('.about-author__title').offsetWidth;
 
    function throttle(callee, timeout) {
       let timer = null;
@@ -19,25 +32,31 @@ window.addEventListener("load", (event) => {
       }
    }
 
-   function addTitleAnimation(className, fun1, fun2) {
+   function addTitleAnimation(className) {
       const title = document.querySelector(className)
       const tr = {
          trigger: title.parentElement,
-         start: "50% 100%",
-         end: "50% 0%",
+         start: "0% 75%",
+         end: "0% 0%",
          toggleActions: 'play none none reverse',
-         onLeave: () => { if (fun1) fun1() },
-         onEnterBack: () => { if (fun1) fun2() },
+         // markers: {
+         //    startColor: "green",
+         //    endColor: "red",
+         //    fontSize: "40px",
+         //    fontWeight: "bold",
+         //    indent: 20
+         // }
       }
       gsap.fromTo(title,
          {
-            y: "30vh",
+            y: "20vh",
             opacity: 0,
          },
          {
-            duration: 0.5,
             y: 0,
             opacity: 1,
+            duration: 0.7,
+            ease: "power2.inOut",
             scrollTrigger: tr,
          })
    }
@@ -92,7 +111,7 @@ window.addEventListener("load", (event) => {
          x: "80vw",
       },
       {
-         x: () => -(widthAuthorTitle / 2 + windowWidth) + "px",
+         x: () => -(widthAuthorTitle + windowWidth / 2) + "px",
          ease: optionsAnimate.ease,
          scrollTrigger: tr_2,
       })
@@ -116,26 +135,7 @@ window.addEventListener("load", (event) => {
 
    addTextAnimation(".about-text__body", ".about-text__animate");
 
-
-   addTitleAnimation('.painting__title', flipTitlePainding, invertTitlePainding);
-   const paintingFlipdestination = document.querySelector('.painting__flip-destination');
-   const paintingTitle = document.querySelector('.painting__title');
-   const paintingTitleItem = document.querySelector('.painting__title');
-   const paintingTitleHome = document.querySelector('.painting__title-home');
-   function flipTitlePainding() {
-      let state = Flip.getState('.painting__title');
-      paintingFlipdestination.append(paintingTitleItem);
-      Flip.from(state, { duration: 1, ease: "power1.inOut", fontSize: "18px", scale: true, })
-      setTimeout(() => {
-         paintingTitle.style.transform = "translate3d(0px, 0px, 0px)";
-         paintingTitle.style.opacity = "";
-      }, 1000)
-   }
-   function invertTitlePainding() {
-      let state = Flip.getState('.painting__title');
-      paintingTitleHome.append(paintingTitleItem);
-      Flip.from(state, { duration: 1, ease: "power1.inOut", fontSize: fontSizeTitle, scale: true, });
-   }
+   addTitleAnimation('.painting__title');
 
    addTitleAnimation('.exposition__title')
 
@@ -197,19 +197,14 @@ window.addEventListener("load", (event) => {
    const paintingItem = document.querySelectorAll(".painting__item");
    document.body.addEventListener('click', (event) => {
       if (event.target.closest('.painting__item')) {
-         paintingItem.forEach((item, index, array) => {
+         paintingItem.forEach((item) => {
             const eventTarget = event.target.closest('.painting__item');
             item.classList.toggle('active', item === eventTarget);
          })
-         // setTimeout(() => {
-         //    widthPaintingList = document.querySelector('.painting__list').offsetWidth;
-         //    ScrollTrigger.refresh(true)
-         // }, 1000)
-
       }
       if (event.target.closest('[href^="#"]')) {
          event.preventDefault();
-         let getName = event.target.getAttribute('href');
+         let getName = event.target.closest('[href^="#"]').getAttribute('href');
          document.documentElement.style.scrollBehavior = "smooth";
          smoother.scrollTo(getName);
          setTimeout(() => { document.documentElement.style.scrollBehavior = "auto"; }, 1000)
@@ -219,7 +214,6 @@ window.addEventListener("load", (event) => {
    function getDataVar() {
       windowWidth = window.innerWidth;
       widthAuthorGallery = document.querySelector('.about-author__gallery').offsetWidth;
-      fontSizeTitle = window.getComputedStyle(document.body).getPropertyValue('--font-size-title');
       ScrollTrigger.update()
    }
    const setDataVars = throttle(getDataVar, 100)
@@ -231,31 +225,70 @@ window.addEventListener("load", (event) => {
    let startTouchY;
    let pageScroll;
    let horizontalScroll = false;
-   let horizontalTest = true;
-   document.addEventListener('touchstart', (event) => {
-      startTouchX = event.touches[0].clientX;
-      startTouchY = event.touches[0].clientY;
-      pageScroll = window.scrollY;
-   })
+   let horizontalTest = false;
 
-   document.addEventListener('touchmove', (event) => {
-      if (horizontalTest && Math.abs(event.touches[0].clientX - startTouchX) > Math.abs(event.touches[0].clientY - startTouchY)) {
-         horizontalScroll = true;
-      }
-      horizontalTest = false;
-      if (horizontalScroll) {
+   if (!isPC) {
+      console.log("Touch");
+      document.addEventListener('touchstart', (event) => {
+         horizontalTest = true;
+         startTouchX = event.touches[0].clientX;
+         startTouchY = event.touches[0].clientY;
+         pageScroll = window.scrollY;
+      })
+      document.addEventListener('touchmove', (event) => {
+         if (horizontalTest && Math.abs(event.touches[0].clientX - startTouchX) > Math.abs(event.touches[0].clientY - startTouchY)) {
+            horizontalScroll = true;
+         }
+         horizontalTest = false;
+         if (horizontalScroll) {
+            event.preventDefault();
+            let value = pageScroll + -(event.touches[0].clientX - startTouchX) * 1.5;
+            smoother.scrollTo(value, true)
+         }
+      }, { passive: false })
+      document.addEventListener('touchend', (event) => {
+         horizontalScroll = false;
+         horizontalTest = false;
+      })
+   }
+
+   if (isPC) {
+      console.log("PC");
+
+      document.body.addEventListener("dragstart", (event) => {
          event.preventDefault();
-         let value = pageScroll + -(event.touches[0].clientX - startTouchX) * 1.5;
-         smoother.scrollTo(value, true)
-      }
-   }, { passive: false })
-   document.addEventListener('touchend', (event) => {
-      horizontalScroll = false;
-      horizontalTest = true;
-   })
+      })
 
+      document.addEventListener('mousedown', (event) => {
+         horizontalTest = true;
+         startTouchX = event.clientX;
+         startTouchY = event.clientY;
+         pageScroll = window.scrollY;
+      })
 
+      document.addEventListener('mousemove', (event) => {
+         // console.log(horizontalScroll + '====' + horizontalTest);
 
+         if (horizontalTest && Math.abs(event.clientX - startTouchX) > Math.abs(event.clientY - startTouchY)) {
+            horizontalScroll = true;
+         }
+         horizontalTest = false;
+         if (horizontalScroll) {
+            event.preventDefault();
+            let value = pageScroll + -(event.clientX - startTouchX) * 1.5;
+            smoother.scrollTo(value, true)
+         }
+      })
+
+      document.addEventListener('mouseup', (event) => {
+         console.log('mouseup');
+         horizontalScroll = false;
+         horizontalTest = false;
+
+         console.log(horizontalScroll + '====' + horizontalTest);
+      })
+
+   }
 
 
 

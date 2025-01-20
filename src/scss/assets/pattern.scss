@@ -10,6 +10,16 @@ body {
    --max-width-container: #{$max-width-container};
    scrollbar-gutter: stable;
 
+   img {
+      user-drag: none;
+      -webkit-user-drag: none;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+
+   }
+
    // @media (min-width:768px) {
    //    --padding-container: #{$padding-tablet};
    // }
@@ -175,21 +185,6 @@ body {
 //       color:var(--color-black, #000000);
 //    }
 // }
-
-.gallery-description {
-   display: flex;
-   justify-content: space-between;
-
-   font-weight: 600;
-   font-size: 14px;
-   line-height: 129%;
-   letter-spacing: -0.05em;
-}
-
-.gallery-data {
-   display: flex;
-   gap: 40px;
-}
 
 .button {
    display: inline-flex;

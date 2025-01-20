@@ -1,6 +1,12 @@
 .painting {
    position: relative;
    overflow: hidden;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   -webkit-touch-callout: none;
+   user-select: none;
 
    &__container {}
 
@@ -9,7 +15,6 @@
    &__title {
       font-size: var(--font-size-title);
       font-weight: 900;
-      transition: transform 0.5s;
    }
 
    &__list {
@@ -32,12 +37,9 @@
       left: 100%;
       z-index: 2;
       height: 0;
-      width: 316px;
+      width: 256px;
       overflow: hidden;
       transition: height 0.5s;
-
-      background-color: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(1px);
 
       a,
       button,
@@ -57,6 +59,7 @@
 
 
    &__text {
+      margin-bottom: 24px;
       font-size: 18px;
       line-height: 133%;
       letter-spacing: -0.05em;
@@ -87,15 +90,6 @@
          opacity: 1;
       }
 
-      .gallery-description {
-         position: absolute;
-         bottom: 100%;
-         left: 0;
-         height: 0;
-         overflow: hidden;
-         transition: height 0.3s;
-      }
-
       img {
          height: 144px;
          max-height: calc(var(--vh) * 0.75);
@@ -106,7 +100,6 @@
          }
       }
 
-
       &.active {
          cursor: auto;
 
@@ -114,7 +107,7 @@
             height: max-content;
          }
 
-         .gallery-description {
+         .painting__description {
             height: auto;
             width: 100%;
          }
@@ -125,15 +118,35 @@
       }
    }
 
-   &__indicator {
-      pointer-events: all;
+   &__description {
+      margin-bottom: 16px;
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      height: 0;
+      width: 100%;
+      font-weight: 600;
       display: flex;
-      align-items: center;
-      gap: 8px;
+      justify-content: space-between;
+      gap: 10px;
+      overflow: hidden;
+      transition: height 0.3s;
+
+      @media (min-width:1024px) {
+         gap: 40px;
+      }
+   }
+
+   &__data {
+      display: flex;
+      gap: 10px;
+
+      @media (min-width:1024px) {
+         gap: 40px;
+      }
    }
 
 }
-
 
 #flip {
    position: relative;
@@ -146,25 +159,36 @@
    justify-content: center;
 }
 
-.painting__title-home {
-   margin-top: var(--h-header);
-   padding-top: 24px;
-   padding-bottom: 100px;
-   height: calc(var(--font-size-big) + 120px);
-}
-
 .painting__flip-body {
    pointer-events: none;
    position: fixed;
    bottom: 0;
    left: 0;
-   z-index: -1;
+   z-index: 2;
    width: 100%;
    height: var(--vh);
    display: flex;
    align-items: center;
    opacity: 0;
    transition: opacity 0.3s;
+
+   a {
+      pointer-events: all;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+
+      @media (min-width:992px) {
+         font-size: 18px;
+      }
+
+      &:hover {
+         opacity: 0.7;
+      }
+   }
 
    &.active {
       opacity: 1;
@@ -179,8 +203,4 @@
    font-size: 18px;
    line-height: 133%;
    letter-spacing: -0.03em;
-}
-
-.painting__flip-destination {
-   font-size: 18px;
 }

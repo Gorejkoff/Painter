@@ -5,9 +5,13 @@
    &__body {}
 
    &__title {
-      margin-bottom: 24vh;
+      margin-bottom: 10vh;
       font-size: var(--font-size-title);
       font-weight: 900;
+
+      @media (min-width:992px) {
+         margin-bottom: 24vh;
+      }
    }
 
    &__grid {
@@ -79,6 +83,11 @@
       will-change: transform;
       margin: 0 auto;
       max-width: 980px;
+      text-align: center;
+
+      @media (min-width:992px) {
+         text-align: start;
+      }
    }
 
    &__text-first {
