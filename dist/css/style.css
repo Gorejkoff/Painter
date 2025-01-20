@@ -785,6 +785,8 @@ body img {
 }
 
 .exposition__text {
+  padding-left: 2px;
+  padding-right: 2px;
   will-change: transform;
   margin: 0 auto;
   max-width: 980px;
