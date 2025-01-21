@@ -223,9 +223,11 @@ body {
 
 
 .text-animate {
-   display: inline-block;
+   // margin-right: -0.06em;
    color: transparent;
    background: linear-gradient(to right, var(--textTransparent) 50%, var(--textColor) 50%) 0 0 / 200% 100%;
    background-clip: text;
    background-position: 100%;
+
+
 }

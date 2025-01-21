@@ -26,7 +26,7 @@ $maxW - махимальная ширина вьюпорта
   --h-gallery-description: 42px;
   --vh: 100vh;
   --font-size-big: calc((var(--vh) - var(--h-header) - var(--h-gallery-description)) * 0.24 / 2);
-  --font-size-title: calc(var(--font-size-big) * 0.35);
+  --font-size-title: calc(var(--font-size-big) * 0.7);
 }
 
 @supports (height: 100dvh) {
@@ -242,7 +242,6 @@ body img {
 }
 
 .text-animate {
-  display: inline-block;
   color: transparent;
   background: -webkit-gradient(linear, left top, right top, color-stop(50%, var(--textTransparent)), color-stop(50%, var(--textColor))) 0 0/200% 100%;
   background: linear-gradient(to right, var(--textTransparent) 50%, var(--textColor) 50%) 0 0/200% 100%;
@@ -407,6 +406,7 @@ body img {
   -ms-user-select: none;
   -webkit-touch-callout: none;
   user-select: none;
+  white-space: nowrap;
 }
 
 .about-author__gallery-foto {
@@ -679,7 +679,6 @@ body img {
 }
 
 .painting__flip-body a {
-  pointer-events: all;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -701,6 +700,10 @@ body img {
   opacity: 1;
 }
 
+.painting__flip-body.active a {
+  pointer-events: all;
+}
+
 .painting__flip-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -717,8 +720,12 @@ body img {
   letter-spacing: -0.03em;
 }
 
+.exposition {
+  padding: 96px 0;
+}
+
 .exposition__title {
-  margin-bottom: 10vh;
+  margin-bottom: 48px;
   font-size: var(--font-size-title);
   font-weight: 900;
 }
@@ -729,7 +736,7 @@ body img {
   display: grid;
   -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 48px;
 }
 
 .exposition__cell {
@@ -797,6 +804,7 @@ body img {
   font-size: 30px;
   line-height: 112%;
   letter-spacing: -0.06em;
+  margin-right: -0.6em;
 }
 
 .exposition__text-second {
@@ -858,15 +866,18 @@ body img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   gap: 30px;
   width: 100%;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 133%;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
 }
 
 .contacts__date {
@@ -877,43 +888,43 @@ body img {
   font-size: 18px;
   line-height: 133%;
   letter-spacing: -0.05em;
+  text-align: center;
 }
 
-.contacts__contacts {
+.contacts__data {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 48px;
-  font-weight: 800;
-  font-size: 24px;
-  line-height: 133%;
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 8px;
 }
 
-.contacts__contacts a,
-.contacts__contacts button {
+.contacts__data a,
+.contacts__data button {
   -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
 }
 
-.contacts__contacts a:hover,
-.contacts__contacts button:hover {
+.contacts__data a:hover,
+.contacts__data button:hover {
   opacity: 0.5;
 }
 
 .contacts__social {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 10%;
-          flex: 1 1 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -935,6 +946,7 @@ body img {
 }
 
 .delivery {
+  width: 100%;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -948,7 +960,7 @@ body img {
 }
 
 .delivery__form {
-  max-width: 648px;
+  width: 100%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
@@ -995,7 +1007,7 @@ body img {
 
 @media (min-width: 768px) {
   :root {
-    --font-size-title: calc(var(--font-size-big) * 0.7);
+    --font-size-big: calc((var(--vh) - var(--h-header) - var(--h-gallery-description)) * 0.24);
   }
 
   .header__link {
@@ -1051,10 +1063,6 @@ body img {
     font-size: 18px;
   }
 
-  .exposition__title {
-    margin-bottom: 24vh;
-  }
-
   .exposition__grid {
     -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
@@ -1106,10 +1114,6 @@ body img {
 
   .contacts__footer-body {
     padding-bottom: 0;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: row-reverse;
-            flex-direction: row-reverse;
     -webkit-box-align: end;
         -ms-flex-align: end;
             align-items: flex-end;
@@ -1118,7 +1122,26 @@ body img {
             justify-content: space-between;
   }
 
+  .contacts__data {
+    gap: 48px;
+    font-size: 24px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+  .contacts__social {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 10%;
+            flex: 1 1 10%;
+  }
+
   .delivery__form {
+    max-width: 648px;
     -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     -webkit-column-gap: 24px;
@@ -1174,6 +1197,10 @@ body img {
 
   .contacts__screen.screen-form {
     min-height: auto;
+  }
+
+  .contacts__social svg {
+    width: 18px;
   }
 }
 

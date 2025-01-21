@@ -33,6 +33,7 @@
       @media (min-width:992px) {
          height: 100%;
          display: flex;
+
          align-items: flex-end;
       }
    }
@@ -66,14 +67,18 @@
    &__footer-body {
       padding-bottom: 24px;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: space-around;
       gap: 30px;
       width: 100%;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 133%;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
 
       @media (min-width:992px) {
          padding-bottom: 0;
-         flex-direction: row-reverse;
          align-items: flex-end;
          justify-content: space-between;
       }
@@ -85,20 +90,25 @@
       font-size: 18px;
       line-height: 133%;
       letter-spacing: -0.05em;
-
+      text-align: center;
    }
 
-   &__contacts {
+   &__data {
+      flex: 1 1 auto;
       display: flex;
+      flex-direction: row-reverse;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      gap: 48px;
-      font-weight: 800;
-      font-size: 24px;
-      line-height: 133%;
-      letter-spacing: -0.05em;
-      text-transform: uppercase;
+      justify-content: space-between;
+      gap: 8px;
+
+
+      @media (min-width:992px) {
+         gap: 48px;
+         font-size: 24px;
+         flex-direction: row;
+         justify-content: center;
+      }
 
       a,
       button {
@@ -112,10 +122,19 @@
    }
 
    &__social {
-      flex: 1 1 10%;
       display: flex;
       justify-content: flex-end;
       gap: 8px;
+
+      @media (max-width:991.98px) {
+         svg {
+            width: 18px;
+         }
+      }
+
+      @media (min-width:992px) {
+         flex: 1 1 10%;
+      }
 
       a,
       button {
@@ -133,18 +152,20 @@
 }
 
 .delivery {
+   width: 100%;
    height: 100%;
    display: flex;
    align-items: center;
    justify-content: center;
 
    &__form {
-      max-width: 648px;
+      width: 100%;
       display: grid;
       grid-template-columns: 1fr;
       gap: 20px;
 
       @media (min-width:992px) {
+         max-width: 648px;
          grid-template-columns: 1fr 1fr;
          column-gap: 24px;
          row-gap: 40px;
