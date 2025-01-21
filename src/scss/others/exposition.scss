@@ -9,6 +9,11 @@
       margin-bottom: 48px;
       font-size: var(--font-size-title);
       font-weight: 900;
+      text-align: center;
+
+      @media (min-width:992px) {
+         text-align: start;
+      }
    }
 
    &__grid {

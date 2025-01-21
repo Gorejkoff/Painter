@@ -504,6 +504,7 @@ body img {
 .painting__title {
   font-size: var(--font-size-title);
   font-weight: 900;
+  text-align: center;
 }
 
 .painting__list {
@@ -728,6 +729,7 @@ body img {
   margin-bottom: 48px;
   font-size: var(--font-size-title);
   font-weight: 900;
+  text-align: center;
 }
 
 .exposition__grid {
@@ -1055,12 +1057,20 @@ body img {
     font-size: 14px;
   }
 
+  .painting__title {
+    text-align: start;
+  }
+
   .painting__item img {
     max-width: 50vw;
   }
 
   .painting__flip-body a {
     font-size: 18px;
+  }
+
+  .exposition__title {
+    text-align: start;
   }
 
   .exposition__grid {
