@@ -250,10 +250,7 @@ window.addEventListener("load", (event) => {
             smoother.scrollTo(value, true)
          }
       }, { passive: false })
-      document.addEventListener('touchend', (event) => {
-         horizontalScroll = false;
-         horizontalTest = false;
-      })
+      document.addEventListener('touchend', stopSwipeMouse)
    }
 
    if (isPC) {
@@ -280,15 +277,13 @@ window.addEventListener("load", (event) => {
          }
       })
 
-      document.addEventListener('mouseup', (event) => {
-         console.log('mouseup');
-         horizontalScroll = false;
-         horizontalTest = false;
-      })
-
+      document.addEventListener('mouseup', stopSwipeMouse)
    }
 
-
+   function stopSwipeMouse() {
+      horizontalScroll = false;
+      horizontalTest = false;
+   }
 
 
 });

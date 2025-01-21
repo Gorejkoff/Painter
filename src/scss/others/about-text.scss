@@ -19,13 +19,11 @@
 
    &__first {
       font-weight: 600;
-      font-size: 30px;
+      font-size: 24px;
       line-height: 112%;
       letter-spacing: -0.06em;
-      text-align: center;
 
       @media (min-width:768px) {
-         text-align: start;
          font-size: 40px;
       }
 
@@ -39,15 +37,14 @@
    }
 
    &__second {
-      max-width: 807px;
+      max-width: 80vw;
       font-weight: 600;
-      font-size: 24px;
+      font-size: 20px;
       line-height: 125%;
       letter-spacing: -0.06em;
-      text-align: center;
 
       @media (min-width:768px) {
-         text-align: start;
+         max-width: 807px;
          font-size: 32px;
       }
 
@@ -65,17 +62,16 @@
       font-size: 18px;
       line-height: 116%;
       letter-spacing: -0.06em;
-      text-align: center;
-      width: 100%;
+      width: 70vw;
 
       @media (min-width:768px) {
+         width: 100%;
          max-width: 440px;
-         margin-right: 120px;
-         text-align: start;
          font-size: 30px;
       }
 
       @media (min-width:1024px) {
+         padding-right: 120px;
          font-size: 38px;
       }
 

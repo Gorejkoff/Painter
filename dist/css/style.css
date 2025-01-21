@@ -466,19 +466,17 @@ body img {
 
 .about-text__first {
   font-weight: 600;
-  font-size: 30px;
+  font-size: 24px;
   line-height: 112%;
   letter-spacing: -0.06em;
-  text-align: center;
 }
 
 .about-text__second {
-  max-width: 807px;
+  max-width: 80vw;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 125%;
   letter-spacing: -0.06em;
-  text-align: center;
 }
 
 .about-text__third {
@@ -486,8 +484,7 @@ body img {
   font-size: 18px;
   line-height: 116%;
   letter-spacing: -0.06em;
-  text-align: center;
-  width: 100%;
+  width: 70vw;
 }
 
 .painting {
@@ -810,8 +807,6 @@ body img {
 }
 
 .exposition__text-second {
-  margin-left: auto;
-  max-width: 807px;
   font-weight: 600;
   font-size: 24px;
   line-height: 125%;
@@ -819,7 +814,7 @@ body img {
 }
 
 .contacts__screen {
-  padding: 50px 0;
+  padding: 48px 0;
   min-height: var(--vh);
 }
 
@@ -873,11 +868,11 @@ body img {
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  gap: 30px;
+  gap: 20px;
   width: 100%;
   font-weight: 800;
-  font-size: 14px;
-  line-height: 133%;
+  font-size: 12px;
+  line-height: 120%;
   letter-spacing: -0.05em;
   text-transform: uppercase;
 }
@@ -1017,19 +1012,17 @@ body img {
   }
 
   .about-text__first {
-    text-align: start;
     font-size: 40px;
   }
 
   .about-text__second {
-    text-align: start;
+    max-width: 807px;
     font-size: 32px;
   }
 
   .about-text__third {
+    width: 100%;
     max-width: 440px;
-    margin-right: 120px;
-    text-align: start;
     font-size: 30px;
   }
 
@@ -1097,6 +1090,8 @@ body img {
   }
 
   .exposition__text-second {
+    max-width: 807px;
+    margin-left: auto;
     font-size: 48px;
   }
 
@@ -1120,9 +1115,11 @@ body img {
     position: fixed;
     left: 0;
     bottom: 0;
+    z-index: 5;
   }
 
   .contacts__footer-body {
+    font-size: 18px;
     padding-bottom: 0;
     -webkit-box-align: end;
         -ms-flex-align: end;
@@ -1176,6 +1173,7 @@ body img {
   }
 
   .about-text__third {
+    padding-right: 120px;
     font-size: 38px;
   }
 
@@ -1210,7 +1208,7 @@ body img {
   }
 
   .contacts__social svg {
-    width: 18px;
+    width: 1em;
   }
 }
 
