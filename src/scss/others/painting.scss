@@ -25,26 +25,39 @@
    &__list {
       position: relative;
       padding: 24px 0;
-      height: var(--vh);
       min-width: max-content;
       display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
+      flex-direction: column;
       gap: 16px;
+
+
+      @media (min-width:992px) {
+         height: var(--vh);
+         flex-direction: row;
+         align-items: flex-end;
+         justify-content: flex-start;
+      }
    }
 
    &__info {
-      pointer-events: none;
-      margin-bottom: 24px;
-      padding-left: 24px;
-      position: absolute;
-      top: 0;
-      left: 100%;
-      z-index: 2;
-      height: 0;
-      width: 256px;
-      overflow: hidden;
+      margin-top: 16px;
+      margin-bottom: 16px;
       transition: height 0.5s;
+      max-width: calc(100vw - 48px);
+
+      @media (min-width:992px) {
+         pointer-events: none;
+         margin-top: 16px;
+         margin-bottom: 24px;
+         padding-left: 24px;
+         position: absolute;
+         top: 0;
+         left: 100%;
+         z-index: 2;
+         height: 0;
+         width: 256px;
+         overflow: hidden;
+      }
 
       a,
       button,
@@ -62,30 +75,35 @@
       color: #000;
    }
 
-
    &__text {
+      display: none;
       margin-bottom: 24px;
       font-size: 18px;
       line-height: 133%;
       letter-spacing: -0.05em;
       color: #000;
+
+      @media (min-width:992px) {
+         display: block;
+      }
    }
 
-
-
    &__item {
+      position: relative;
+      transition: opacity 0.3s;
+
+      @media (min-width:992px) {
+         cursor: pointer;
+         display: flex;
+         align-items: flex-end;
+      }
+
       &:nth-last-child(-n+2).active {
          .painting__info {
             left: auto;
             right: 100%;
          }
       }
-
-      cursor: pointer;
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      transition: opacity 0.3s;
 
       &:hover {
          opacity: 0.7;
@@ -96,46 +114,56 @@
       }
 
       img {
-         height: 144px;
-         max-height: calc(var(--vh) * 0.75);
-         transition: height 0.5s;
+         max-width: calc(100vw - 48px);
+         width: 100%;
 
          @media (min-width:992px) {
+            height: 144px;
+            max-height: calc(var(--vh) * 0.75);
             max-width: 50vw;
+            transition: height 0.5s;
          }
       }
 
-      &.active {
-         cursor: auto;
+      @media (min-width:992px) {
+         &.active {
+            cursor: auto;
 
-         .painting__info {
-            height: max-content;
-         }
+            .painting__info {
+               height: max-content;
+            }
 
-         .painting__description {
-            height: auto;
-            width: 100%;
-         }
+            .painting__description {
+               height: auto;
+               width: 100%;
+            }
 
-         img {
-            height: 75vh;
+            img {
+               height: 75vh;
+               max-width: none;
+            }
          }
       }
    }
 
    &__description {
+
       margin-bottom: 16px;
-      position: absolute;
-      bottom: 100%;
-      left: 0;
-      height: 0;
-      width: 100%;
       font-weight: 600;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       gap: 10px;
       overflow: hidden;
       transition: height 0.3s;
+
+      @media (min-width:992px) {
+         position: absolute;
+         bottom: 100%;
+         left: 0;
+         height: 0;
+         width: 100%;
+      }
 
       @media (min-width:1024px) {
          gap: 40px;

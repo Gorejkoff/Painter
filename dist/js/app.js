@@ -19,6 +19,9 @@ window.addEventListener("load", (event) => {
    const isPC = !isMobile.any();
    // if (isPC) { document.body.classList.add('_pc') } else { document.body.classList.add('_touch') };
 
+   // media queries
+   const MIN992 = window.matchMedia('(min-width: 992px)');
+
    let windowHeight = window.innerHeight;
    let windowWidth = window.innerWidth;
    let widthAuthorGallery = document.querySelector('.about-author__gallery').offsetWidth;
@@ -176,44 +179,40 @@ window.addEventListener("load", (event) => {
 
    addTitleAnimation('.exposition__title')
 
-   let widthPaintingList = document.querySelector('.painting__list').offsetWidth;
-   const widthPainting = document.querySelector('.painting__body').offsetWidth;
-   const tl_3 = gsap.timeline({
-      scrollTrigger: {
-         trigger: ".painting__list",
-         start: "0% 0%",
-         end: () => widthPaintingList * 0.5 + "px",
-         pin: true,
-         scrub: optionsAnimate.scrub,
-      }
-   })
-   tl_3.to(".painting__list",
-      {
-         x: `-${widthPaintingList - widthPainting}px`,
-         ease: optionsAnimate.ease,
-      })
+   if (MIN992.matches) {
 
-   gsap.to(".painting__flip-body",
-      {
-         color: "#red",
-         ease: optionsAnimate.ease,
 
+      let widthPaintingList = document.querySelector('.painting__list').offsetWidth;
+      let widthPainting = document.querySelector('.painting__body').offsetWidth;
+      const tl_3 = gsap.timeline({
          scrollTrigger: {
-            trigger: ".painting",
+            trigger: ".painting__list",
             start: "0% 0%",
-            end: () => widthPaintingList - windowHeight + "px 100px",
-            toggleActions: 'play none none reverse',
-            toggleClass: { targets: ".painting__flip-body", className: "active" },
-            // markers: {
-            //    startColor: "green",
-            //    endColor: "red",
-            //    fontSize: "40px",
-            //    fontWeight: "bold",
-            //    indent: 20
-            // }
-         },
+            end: () => widthPaintingList * 0.5 + "px",
+            pin: true,
+            scrub: optionsAnimate.scrub,
+         }
       })
+      tl_3.to(".painting__list",
+         {
+            x: `-${widthPaintingList - widthPainting}px`,
+            ease: optionsAnimate.ease,
+         })
 
+      gsap.to(".painting__flip-body",
+         {
+            color: "#red",
+            ease: optionsAnimate.ease,
+
+            scrollTrigger: {
+               trigger: ".painting",
+               start: "0% 0%",
+               end: () => widthPaintingList - windowHeight + "px 100px",
+               toggleActions: 'play none none reverse',
+               toggleClass: { targets: ".painting__flip-body", className: "active" },
+            },
+         })
+   }
    // addTextAnimation(".exposition__text", ".exposition__text-animate")
    addTextAnimation(".exposition__text", ".exposition__text")
 

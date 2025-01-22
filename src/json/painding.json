@@ -1,0 +1,62 @@
+[
+   {
+      "active": true,
+      "image": "image-1.jpg",
+      "image-m": "image-1m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-2.jpg",
+      "image-m": "image-2m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-3.jpg",
+      "image-m": "image-3m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-4.jpg",
+      "image-m": "image-4m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-1.jpg",
+      "image-m": "image-1m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-3.jpg",
+      "image-m": "image-3m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-2.jpg",
+      "image-m": "image-2m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-4.jpg",
+      "image-m": "image-4m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-1.jpg",
+      "image-m": "image-1m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-3.jpg",
+      "image-m": "image-3m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-2.jpg",
+      "image-m": "image-2m.jpg"
+   },
+   {
+      "active": false,
+      "image": "image-4.jpg",
+      "image-m": "image-4m.jpg"
+   }
+]

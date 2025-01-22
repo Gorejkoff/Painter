@@ -26,7 +26,7 @@ $maxW - махимальная ширина вьюпорта
   --h-gallery-description: 42px;
   --vh: 100vh;
   --font-size-big: calc((var(--vh) - var(--h-header) - var(--h-gallery-description)) * 0.24 / 2);
-  --font-size-title: calc(var(--font-size-big) * 0.7);
+  --font-size-title: calc(var(--font-size-big) * 0.5);
 }
 
 @supports (height: 100dvh) {
@@ -518,35 +518,25 @@ body img {
 .painting__list {
   position: relative;
   padding: 24px 0;
-  height: var(--vh);
   min-width: -webkit-max-content;
   min-width: -moz-max-content;
   min-width: max-content;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 16px;
 }
 
 .painting__info {
-  pointer-events: none;
-  margin-bottom: 24px;
-  padding-left: 24px;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  z-index: 2;
-  height: 0;
-  width: 256px;
-  overflow: hidden;
+  margin-top: 16px;
+  margin-bottom: 16px;
   -webkit-transition: height 0.5s;
   transition: height 0.5s;
+  max-width: calc(100vw - 48px);
 }
 
 .painting__info a,
@@ -565,6 +555,7 @@ body img {
 }
 
 .painting__text {
+  display: none;
   margin-bottom: 24px;
   font-size: 18px;
   line-height: 133%;
@@ -573,14 +564,7 @@ body img {
 }
 
 .painting__item {
-  cursor: pointer;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
@@ -599,42 +583,18 @@ body img {
 }
 
 .painting__item img {
-  height: 144px;
-  max-height: calc(var(--vh) * 0.75);
-  -webkit-transition: height 0.5s;
-  transition: height 0.5s;
-}
-
-.painting__item.active {
-  cursor: auto;
-}
-
-.painting__item.active .painting__info {
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-}
-
-.painting__item.active .painting__description {
-  height: auto;
+  max-width: calc(100vw - 48px);
   width: 100%;
-}
-
-.painting__item.active img {
-  height: 75vh;
 }
 
 .painting__description {
   margin-bottom: 16px;
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  height: 0;
-  width: 100%;
   font-weight: 600;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -806,7 +766,6 @@ body img {
   will-change: transform;
   margin: 0 auto;
   max-width: 980px;
-  text-align: center;
 }
 
 .exposition__text-first {
@@ -822,6 +781,7 @@ body img {
   font-size: 24px;
   line-height: 125%;
   letter-spacing: -0.06em;
+  margin-left: 10vw;
 }
 
 .contacts__screen {
@@ -879,7 +839,7 @@ body img {
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  gap: 20px;
+  gap: 4px;
   width: 100%;
   font-weight: 800;
   font-size: 12px;
@@ -906,10 +866,6 @@ body img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-align: center;
@@ -939,7 +895,7 @@ body img {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  gap: 8px;
+  gap: 4px;
 }
 
 .contacts__social a svg rect,
@@ -1011,6 +967,13 @@ body img {
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: #000;
+  width: 100%;
+}
+
+@media (min-width: 500px) {
+  :root {
+    --font-size-title: calc(var(--font-size-big) * 0.7);
+  }
 }
 
 @media (min-width: 768px) {
@@ -1048,11 +1011,11 @@ body img {
   }
 
   .exposition__text-first {
-    font-size: 36px;
+    font-size: 40px;
   }
 
   .exposition__text-second {
-    font-size: 40px;
+    font-size: 36px;
   }
 }
 
@@ -1065,8 +1028,82 @@ body img {
     text-align: start;
   }
 
+  .painting__list {
+    height: var(--vh);
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+
+  .painting__info {
+    pointer-events: none;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    padding-left: 24px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: 2;
+    height: 0;
+    width: 256px;
+    overflow: hidden;
+  }
+
+  .painting__text {
+    display: block;
+  }
+
+  .painting__item {
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+
   .painting__item img {
+    height: 144px;
+    max-height: calc(var(--vh) * 0.75);
     max-width: 50vw;
+    -webkit-transition: height 0.5s;
+    transition: height 0.5s;
+  }
+
+  .painting__item.active {
+    cursor: auto;
+  }
+
+  .painting__item.active .painting__info {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+  }
+
+  .painting__item.active .painting__description {
+    height: auto;
+    width: 100%;
+  }
+
+  .painting__item.active img {
+    height: 75vh;
+    max-width: none;
+  }
+
+  .painting__description {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    height: 0;
+    width: 100%;
   }
 
   .painting__flip-body a {
@@ -1090,10 +1127,6 @@ body img {
     -webkit-transform: translateY(50%);
         -ms-transform: translateY(50%);
             transform: translateY(50%);
-  }
-
-  .exposition__text {
-    text-align: start;
   }
 
   .exposition__text-first {
@@ -1138,15 +1171,16 @@ body img {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    gap: 16px;
   }
 
   .contacts__data {
     gap: 48px;
     font-size: 24px;
     -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -1219,7 +1253,7 @@ body img {
   }
 
   .contacts__social svg {
-    width: 1em;
+    width: 24px;
   }
 }
 
