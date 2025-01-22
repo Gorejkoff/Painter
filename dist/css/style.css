@@ -243,11 +243,22 @@ body img {
 
 .text-animate {
   color: transparent;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, var(--textTransparent)), color-stop(50%, var(--textColor))) 0 0/200% 100%;
-  background: linear-gradient(to right, var(--textTransparent) 50%, var(--textColor) 50%) 0 0/200% 100%;
   -webkit-background-clip: text;
           background-clip: text;
-  background-position: 100%;
+  background-color: var(--textTransparent);
+}
+
+.text-animate > span {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  padding-right: 0.07em;
+}
+
+.text-animate > span span {
+  display: inline-block;
 }
 
 .header {

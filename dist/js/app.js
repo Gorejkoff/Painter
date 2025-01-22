@@ -65,7 +65,25 @@ window.addEventListener("load", (event) => {
          })
    }
 
-   function addTextAnimation(trigerName, itemMame) {
+   // function addTextAnimation(trigerName, itemMame) {
+   //    const tl = gsap.timeline({
+   //       scrollTrigger: {
+   //          trigger: trigerName,
+   //          start: "50% 50%",
+   //          end: `${windowHeight * 3} 100%`,
+   //          pin: true,
+   //          scrub: optionsAnimate.scrub,
+   //       }
+   //    })
+   //    const listItem = document.querySelectorAll(itemMame);
+   //    if (listItem.length > 0) {
+   //       listItem.forEach((e) => {
+   //          tl.to(e, { duration: 5, backgroundPosition: "-100%", ease: "none", })
+   //       })
+   //    }
+   // }
+
+   function addTextAnimation(trigerName, parent) {
       const tl = gsap.timeline({
          scrollTrigger: {
             trigger: trigerName,
@@ -75,13 +93,26 @@ window.addEventListener("load", (event) => {
             scrub: optionsAnimate.scrub,
          }
       })
-      const listItem = document.querySelectorAll(itemMame);
-      if (listItem.length > 0) {
-         listItem.forEach((e) => {
-            tl.to(e, { duration: 5, backgroundPosition: "-100%", ease: "none", })
+      let textList = document.querySelectorAll(`${parent} .text-animate`);
+      let content;
+      textList.forEach(e => {
+         let words = e.innerHTML.split(' ');
+         let wordsWrap = words.map(item => {
+            return item.split('').map(e => { return `<span class="letter">${e}</span>` }).join('');
          })
-      }
+         content = wordsWrap.map(item => { return `<span>${item}</span>` })
+         e.innerHTML = '';
+         e.insertAdjacentHTML('beforeend', content.join(' '));
+
+         let listLetter = e.querySelectorAll(`${parent} .letter`);
+         let colorLetter = window.getComputedStyle(e).getPropertyValue('--textColor');
+         listLetter.forEach((e) => {
+            tl.to(e, { duration: 5, color: colorLetter, ease: "none", })
+         })
+      })
    }
+
+
 
    const optionsAnimate = {
       scrub: 0,
@@ -137,7 +168,9 @@ window.addEventListener("load", (event) => {
          scrollTrigger: tr_1,
       })
 
-   addTextAnimation(".about-text__body", ".about-text__animate");
+   // addTextAnimation(".about-text__body", ".about-text__animate");
+   addTextAnimation(".about-text__body", ".about-text__shell")
+
 
    addTitleAnimation('.painting__title');
 
@@ -181,7 +214,8 @@ window.addEventListener("load", (event) => {
          },
       })
 
-   addTextAnimation(".exposition__text", ".exposition__text-animate")
+   // addTextAnimation(".exposition__text", ".exposition__text-animate")
+   addTextAnimation(".exposition__text", ".exposition__text")
 
    addTitleAnimation('.contacts__title')
 
