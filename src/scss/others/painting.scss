@@ -40,8 +40,7 @@
    }
 
    &__info {
-      margin-top: 16px;
-      margin-bottom: 16px;
+      margin-top: 8px;
       transition: height 0.5s;
       max-width: calc(100vw - 48px);
 
@@ -67,12 +66,16 @@
    }
 
    &__price {
-      margin-bottom: 12px;
+      margin-bottom: 4px;
       font-weight: 800;
       font-size: 18px;
       line-height: 133%;
       letter-spacing: -0.03em;
       color: #000;
+
+      @media (min-width:992px) {
+         margin-bottom: 16px;
+      }
    }
 
    &__text {
@@ -147,17 +150,17 @@
    }
 
    &__description {
-
-      margin-bottom: 16px;
+      margin-bottom: 4px;
       font-weight: 600;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 10px;
+      gap: 4px;
       overflow: hidden;
       transition: height 0.3s;
 
       @media (min-width:992px) {
+         margin-bottom: 16px;
          position: absolute;
          bottom: 100%;
          left: 0;

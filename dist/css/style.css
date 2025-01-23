@@ -532,8 +532,7 @@ body img {
 }
 
 .painting__info {
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin-top: 8px;
   -webkit-transition: height 0.5s;
   transition: height 0.5s;
   max-width: calc(100vw - 48px);
@@ -546,7 +545,7 @@ body img {
 }
 
 .painting__price {
-  margin-bottom: 12px;
+  margin-bottom: 4px;
   font-weight: 800;
   font-size: 18px;
   line-height: 133%;
@@ -588,7 +587,7 @@ body img {
 }
 
 .painting__description {
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   font-weight: 600;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -598,7 +597,7 @@ body img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  gap: 10px;
+  gap: 4px;
   overflow: hidden;
   -webkit-transition: height 0.3s;
   transition: height 0.3s;
@@ -1056,6 +1055,10 @@ body img {
     overflow: hidden;
   }
 
+  .painting__price {
+    margin-bottom: 16px;
+  }
+
   .painting__text {
     display: block;
   }
@@ -1099,6 +1102,7 @@ body img {
   }
 
   .painting__description {
+    margin-bottom: 16px;
     position: absolute;
     bottom: 100%;
     left: 0;
