@@ -146,7 +146,7 @@ window.addEventListener("load", (event) => {
 
    gsap.fromTo(".about-author__title",
       {
-         x: "80vw",
+         x: "10vw",
       },
       {
          x: () => -(widthAuthorTitle + windowWidth / 2) + "px",
@@ -163,7 +163,7 @@ window.addEventListener("load", (event) => {
 
    gsap.fromTo(".about-author__gallery",
       {
-         x: "85vw",
+         x: "50vw",
       },
       {
          x: `-${widthAuthorGallery - windowWidth}px`,
@@ -317,7 +317,6 @@ window.addEventListener("load", (event) => {
       horizontalScroll = false;
       horizontalTest = false;
    }
-
 
 });
 
